@@ -1,6 +1,6 @@
-SteelEye Frontend
+# SteelEye Frontend
 
-1. Explain what the simple List component does.
+## 1. Explain what the simple List component does.
 
 The Simple List component is a user interface (UI) component that displays a list of items in a vertical or horizontal format. It is a commonly used UI element in many web and mobile applications.
 
@@ -8,24 +8,40 @@ The Simple List component usually displays text or icons for each item, and it c
 
 The Simple List component can also be used in combination with other UI components to create more complex interfaces, such as dropdown menus or navigation bars. Its simplicity and versatility make it a popular choice for many developers and designers.
 
-2. What problems / warnings are there with code?
 
-In the WrappedSingleListItem, the onClickHandler is not being invoked properly. Instead of being called when the list item is clicked, the onClickHandler is being called immediately when the component is rendered.
-onClick={onClickHandler(index)}
+## 2. What problems / warnings are there with code?
 
-Incorrect syntax of useState() hook. The useState() hook returns an array of two elements where the first element is the state value and the second element is a function to update the state value. The array elements need to be swapped.
-const [setSelectedIndex, selectedIndex] = useState();
+1) In the WrappedSingleListItem, the onClickHandler is not being invoked properly. Instead of being called when the list item is clicked, the onClickHandler is being called immediately when the component is rendered. 
 
-In the items.map() function, each child in a list should have a unique key prop. Also, the isSelected prop should be passed as a boolean, instead it is being passed as a selectedIndex state value. The correct code should be:
-{items.map((item, index) => ( <SingleListItem onClickHandler={() => handleClick(index)} text={item.text} index={index} isSelected={selectedIndex} /> ))}
+`onClick={onClickHandler(index)}`
 
-In the WrappedListComponent, the prop type for the items array is not defined correctly.
-PropTypes.array(PropTypes.shapeOf({...}))
+2) Incorrect syntax of useState() hook. The useState() hook returns an array of two elements where the first element is the state value and the second element is a function to update the state value. The array elements need to be swapped.
 
-The items in WrappedListComponent.defaultProps cannot be null. They must have an array of elements.
-WrappedListComponent.defaultProps = { items: null, };
+`const [setSelectedIndex, selectedIndex] = useState();`
 
-3. Please fix, optimize, and/or modify the component as much as you think is necessary.
+3) In the items.map() function, each child in a list should have a unique key prop. Also, the isSelected prop should be passed as a boolean, instead it is being passed as a selectedIndex state value. The correct code should be:
+
+`{items.map((item, index) => (
+        <SingleListItem
+          onClickHandler={() => handleClick(index)}
+          text={item.text}
+          index={index}
+          isSelected={selectedIndex}
+        />
+      ))}`
+      
+4) In the WrappedListComponent, the prop type for the items array is not defined correctly. 
+  
+  `PropTypes.array(PropTypes.shapeOf({...}))`
+  
+5) The items in WrappedListComponent.defaultProps cannot be null. They must have an array of elements.
+  
+  `WrappedListComponent.defaultProps = {
+  items: null,
+};`
+
+## 3. Please fix, optimize, and/or modify the component as much as you think is necessary.
+
 
 import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
