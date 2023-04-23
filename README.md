@@ -108,7 +108,7 @@ WrappedListComponent.propTypes = {
 
 WrappedListComponent.defaultProps = {
   items: [{
-    text: "Daksh Patidar 12019231",
+    text: "Mahatva Garg 12016313",
   },
   {
     text: "SteelEye Frontend Assignment ",
